@@ -1,6 +1,10 @@
 # Mattermost API Test Suite
 
-This project contains automated tests for the Mattermost API, covering authentication, channel management, and message handling.
+Данный проект включает автотесты для API Mattermost, которые покрывают:
+
+ - аутентификацию,
+ - управление каналами,
+ - отправку и получение сообщений.
 
 ## Prerequisites
 
@@ -10,17 +14,17 @@ This project contains automated tests for the Mattermost API, covering authentic
 
 ## Setup
 
-1. Clone the repository
-2. Create a virtual environment:
+1. Склонировать репозиторий
+2. Создать виртуальное окружение:
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-3. Install dependencies:
+3. Усиановить расширения:
    ```bash
    pip install -r requirements.txt
    ```
-4. Create a `.env` file in the project root with the following variables:
+4. Создать `.env` файл в проект:
    ```
    MATTERMOST_URL=http://your-mattermost-server:8065
    TEST_USERNAME=your-test-username
@@ -30,50 +34,48 @@ This project contains automated tests for the Mattermost API, covering authentic
 
 ## Running Tests
 
-To run all tests:
+Прогнать все тесты:
 ```bash
 pytest
 ```
 
-To run specific test files:
+Запустить отдельно тесты каналов:
 ```bash
 pytest tests/test_authentication.py
 pytest tests/test_channels.py
 ```
 
-To generate an HTML report:
+Сгенерировать html шаблон:
 ```bash
 pytest --html=report.html
 ```
 
 ## Test Coverage
 
-The test suite covers the following scenarios:
-
-### Authentication
-- Successful login with correct credentials
-- Failed login with incorrect credentials
-- Login with empty credentials
-- Login with missing credentials
-- Successful logout
+### Аутентификация
+ - Успешный вход с правильными учетными данными
+ - Неудачная попытка входа с неверными учетными данными
+ - Вход с пустыми учетными данными
+ - Вход с отсутствующими учетными данными
+ - Успешный выход из системы
 
 ### Channel Management
-- Creating a new channel
-- Creating a duplicate channel
-- Sending messages to a channel
-- Retrieving messages from a channel
+ - Создание нового канала
+ - Создание дубликата канала
+ - Отправка сообщений в канал
+ - Получение сообщений из канала
 
 ## Test Structure
 
-- `config.py`: Configuration settings and test data
-- `tests/base.py`: Base test class with common functionality
-- `tests/test_authentication.py`: Authentication test cases
-- `tests/test_channels.py`: Channel management test cases
+- `config.py`: файл конфигурации
+- `tests/base.py`: Базовый класс
+- `tests/test_authentication.py`: Аутентификации тест-кейсы
+- `tests/test_channels.py`: Тест-кейсы каналов
 
 ## Troubleshooting
 
-If you encounter any issues:
-1. Verify your Mattermost server is running and accessible
-2. Check your `.env` file configuration
-3. Ensure you have the correct permissions on the Mattermost server
-4. Check the test logs for detailed error messages 
+Если у вас возникнут какие-либо проблемы:
+1. Убедитесь, что ваш самый важный сервер запущен и доступен
+2. Проверьте конфигурацию `.env` файла конфигурации
+3. Убедитесь что у вас есть правильные разрешения на самом сервере
+4. Проверьте сообщения на наличие сообщений об ошибках
