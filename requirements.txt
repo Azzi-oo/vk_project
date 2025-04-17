@@ -1,0 +1,9 @@
+pytest==7.4.3
+requests==2.31.0
+python-dotenv==1.0.0
+pytest-html==4.1.1
+pytest-reportlog==0.1.2
+MATTERMOST_URL=http://your-mattermost-server:8065
+TEST_USERNAME=your-test-username
+TEST_PASSWORD=your-test-password
+TEST_EMAIL=your-test-email@example.com 
