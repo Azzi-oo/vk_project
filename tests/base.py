@@ -2,7 +2,21 @@ import requests
 import pytest
 from config import MATTERMOST_URL, ENDPOINTS, TEST_USER
 
+def check_server_availability():
+    try:
+        response = requests.get(MATTERMOST_URL, timeout=5)
+        return response.status_code < 500
+    except requests.exceptions.RequestException:
+        return False
+
+def skip_if_server_unavailable():
+    return pytest.mark.skipif(
+        not check_server_availability(),
+        reason="Mattermost server is not available"
+    )
+
 class BaseTest:
+    @skip_if_server_unavailable()
     def setup_method(self):
         self.session = requests.Session()
         self.token = None

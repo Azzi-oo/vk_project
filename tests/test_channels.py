@@ -1,14 +1,19 @@
 import pytest
-from tests.base import BaseTest
-from config import TEST_CHANNEL
+from .base import BaseTest
+from config import TEST_CHANNEL, TEST_TEAM, MATTERMOST_URL, ENDPOINTS
 
 class TestChannels(BaseTest):
     def setup_method(self):
         super().setup_method()
         # Login before each test
-        self.login()
+        response = self.login()
+        if response.status_code == 401:
+            pytest.skip("Invalid credentials. Please check your .env file")
+        
         # Create a team for channel tests
         team_response = self.create_team(TEST_TEAM)
+        if team_response.status_code == 401:
+            pytest.skip("Not authorized to create teams. Please check user permissions")
         assert team_response.status_code == 201
         self.team_id = team_response.json()['id']
 
@@ -53,7 +58,7 @@ class TestChannels(BaseTest):
         
         # Get messages
         response = self.session.get(
-            f"{self.MATTERMOST_URL}{self.ENDPOINTS['posts']}/channel/{channel_id}",
+            f"{MATTERMOST_URL}{ENDPOINTS['posts']}/channel/{channel_id}",
             headers=self.headers
         )
         assert response.status_code == 200

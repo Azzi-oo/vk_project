@@ -1,0 +1,11 @@
+README.md
+setup.py
+mattermost_api_tests.egg-info/PKG-INFO
+mattermost_api_tests.egg-info/SOURCES.txt
+mattermost_api_tests.egg-info/dependency_links.txt
+mattermost_api_tests.egg-info/requires.txt
+mattermost_api_tests.egg-info/top_level.txt
+tests/__init__.py
+tests/base.py
+tests/test_authentication.py
+tests/test_channels.py
