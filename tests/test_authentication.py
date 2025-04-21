@@ -6,7 +6,6 @@ class TestAuthentication(BaseTest):
     def test_successful_login(self):
         """Test successful login with correct credentials"""
         response = self.login()
-        # Mattermost returns 401 for invalid credentials
         if response.status_code == 401:
             pytest.skip("Invalid credentials. Please check your .env file")
         assert response.status_code == 200
